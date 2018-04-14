@@ -288,6 +288,7 @@ console.log(jsonin);
 
 						var resources = {};
 						var events =[];
+						var LeidigOrder = ["MAK B1116", "MAK B1118", "MAK B1124", "MAK B2235", "MAK D1117", "MAK D2233", "MAK A1105", "MAK A1167", "HRY 113", "HRY 115"];
 						var startdate;
 						for (var key in jsonin) {
 							var pasretime = Date.parse(jsonin[key][18]);
@@ -314,7 +315,7 @@ console.log(jsonin);
 								var resourceKey;
 								if(typeof roomKey != 'undefined' && 3>= roomKey.length <= 4){
 
-									resourceKey = (roomKey.length == 3) ? ((uniquer[0]=='H') ? 'E2'+uniquer[0]+roomKey : uniquer[0]+roomKey) :  ((roomKey[0]=='A') ?  roomKey.replace('A','E') : roomKey);
+									resourceKey = (roomKey.length == 3) ? ((uniquer[0]=='H' && LeidigOrder.includes(array[17])) ? 'E2'+uniquer[0]+roomKey : uniquer[0]+roomKey) :  ((roomKey[0]=='A') ?  roomKey.replace('A','E') : (LeidigOrder.includes(array[17]) ? roomKey : 'Z'+roomKey));
 									resources[resourceKey]= array[17];  
 						
 									}
@@ -324,7 +325,7 @@ console.log(jsonin);
 
 
 						//use return instead of continue because of the function
-								if(array[14] && array[0]){
+								if(array[14] && array[0] && array[15] && array[16]){
 
 									var days = array[14];         //convert the day into array of characters			
 									
@@ -377,7 +378,7 @@ console.log(jsonin);
 						}
 
 						eventNresourceGenerator();
-						// console.log(resources);
+						 console.log(resources);
 
 
 						var sortedResources = function(){                        //sorted the Json object to start with MAK A1105
