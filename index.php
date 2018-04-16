@@ -734,6 +734,16 @@ $('.timepickerend').timepicker({
 			// Adds the buttons for the add course dialog
 			$("#addCourse").dialog('option', 'buttons', {
             	"Add Course" : function() {
+
+					var stime = document.getElementById("beginTime");
+					var etime = document.getElementById("endTime");
+					var cnum = document.getElementById("cNum");
+					var room = document.getElementById("addroomnumauto");
+					var days = document.getElementById("days");
+					var snum = document.getElementById("sNum");
+					if (!snum.checkValidity() || !days.checkValidity() || !room.checkValidity() || !cnum.checkValidity() || !etime.checkValidity() || !stime.checkValidity()){
+						return;
+					}
 					//var ddl = document.getElementById("roomNum");
 					//var room = ddl.options[ddl.selectedIndex].text;
 
@@ -781,6 +791,15 @@ $('.timepickerend').timepicker({
             	"Confirm Edit" : function() {
 					//var ddl = document.getElementById("editrNum");
 					//var room = ddl.options[ddl.selectedIndex].text;
+					var stime = document.getElementById("editbeginTime");
+					var etime = document.getElementById("editendTime");
+					var cnum = document.getElementById("editcNum");
+					var room = document.getElementById("editRoomAuto");
+					var days = document.getElementById("editdays");
+					var snum = document.getElementById("editsNum");
+					if (!snum.checkValidity() || !days.checkValidity() || !room.checkValidity() || !cnum.checkValidity() || !etime.checkValidity() || !stime.checkValidity()){
+						return;
+					}
 					if ($('#editbeginTime').val() == $('#editendTime').val()){
 						alert("Begin time cannot be the same as end time.")
 						return false;
@@ -1167,7 +1186,7 @@ opacity: 1;
 			<div style="float: right;">
 			<label for="roomNum">Room Number:</label>
 			<!--<select name="addroom" id="roomNum"></select>-->
-			<input type="text" id="addroomnumauto" pattern="[A-Z]{2,3}\s[A-Z|0-9]{3,6}">
+			<input type="text" id="addroomnumauto" pattern="[A-Z]{2,3}\s[A-Z|0-9]{3,6}" required>
 			</div>
 			</div>
 		
@@ -1231,7 +1250,7 @@ opacity: 1;
 			<div style="float: right;">
 			<label for="editrNum">Room Number:</label>
 			<!--<select name="editRoom" id="editrNum"></select>-->
-			<input type="text" id="editRoomAuto" pattern="[A-Z]{2,3}\s[A-Z|0-9]{3,6}">
+			<input type="text" id="editRoomAuto" pattern="[A-Z]{2,3}\s[A-Z|0-9]{3,6}" required>
 			</div>
 			</div>
 	</form>
