@@ -734,6 +734,17 @@ $('.timepickerend').timepicker({
 			// Adds the buttons for the add course dialog
 			$("#addCourse").dialog('option', 'buttons', {
             	"Add Course" : function() {
+					
+					var beginTime = $('#beginTime').val();
+					var endTime = $('#endTime').val();
+
+					var begin24 = to24(beginTime);
+					var end24 = to24(endTime);
+
+					if(begin24 >= end24){
+						alert("End time cannot be before or equal to begin time.");
+						return;
+					}
 
 					var stime = document.getElementById("beginTime");
 					var etime = document.getElementById("endTime");
@@ -747,12 +758,6 @@ $('.timepickerend').timepicker({
 					//var ddl = document.getElementById("roomNum");
 					//var room = ddl.options[ddl.selectedIndex].text;
 
-					var beginTime = $('#beginTime').val();
-					var endTime = $('#endTime').val();
-					if(beginTime == endTime && beginTime != '' && endTime != ''){
-						alert("Begin time cannot equal end time!");
-						return;
-					}
 					//console.log(room);
 					// alert("done");
 					modaltext = 'Adding course to \"'+selection+'\" spreadsheet';
@@ -789,6 +794,17 @@ $('.timepickerend').timepicker({
 			// Adds the buttons for the add course dialog
 			$("#editCourse").dialog('option', 'buttons', {
             	"Confirm Edit" : function() {
+
+					var beginTime = $('#editbeginTime').val();
+					var endTime = $('#editendTime').val();
+
+					var begin24 = to24(beginTime);
+					var end24 = to24(endTime);
+
+					if(begin24 >= end24){
+						alert("End time cannot be before or equal to begin time.");
+						return;
+					}
 					//var ddl = document.getElementById("editrNum");
 					//var room = ddl.options[ddl.selectedIndex].text;
 					var stime = document.getElementById("editbeginTime");
@@ -800,10 +816,7 @@ $('.timepickerend').timepicker({
 					if (!snum.checkValidity() || !days.checkValidity() || !room.checkValidity() || !cnum.checkValidity() || !etime.checkValidity() || !stime.checkValidity()){
 						return;
 					}
-					if ($('#editbeginTime').val() == $('#editendTime').val()){
-						alert("Begin time cannot be the same as end time.")
-						return false;
-					}
+					
 			modaltext = "Updating changes to "+selection;
 			modalbkcolor = '#255BA1';
 			spinner = spinners[2];
@@ -1063,7 +1076,20 @@ $('.timepickerend').timepicker({
 
 
 
+function to24(time){
+	var hours = Number(time.match(/^(\d+)/)[1]);
+	var minutes = Number(time.match(/:(\d+)/)[1]);
+	var AMPM = time.match(/\s(.*)$/)[1];
+	if(AMPM == "PM" && hours<12) hours = hours+12;
+	if(AMPM == "AM" && hours==12) hours = hours-12;
+	var sHours = hours.toString();
+	var sMinutes = minutes.toString();
+	if(hours<10) sHours = "0" + sHours;
+	if(minutes<10) sMinutes = "0" + sMinutes;					
+	var unixTimeZero = Date.parse('01 Jan 1970 ' + sHours +':'+ sMinutes +':00 GMT');
 
+	return unixTimeZero;
+}
 	
 
 		
