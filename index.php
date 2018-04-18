@@ -760,7 +760,7 @@ $('.timepickerend').timepicker({
 
 					//console.log(room);
 					// alert("done");
-					modaltext = 'Adding course to \"'+selection+'\" spreadsheet';
+					modaltext = 'Adding section to \"'+selection+'\" spreadsheet';
 					modalbkcolor = '#255BA1';
 					spinner = spinners[1];
 					var coursenumtrimmed = $('#cNum').val().replace(/\s/g,'');
@@ -854,7 +854,7 @@ $('.timepickerend').timepicker({
 			$("#deleteDialog").dialog('option', 'buttons', {
             	"Yes" : function() {
 					// Confirm yes, will not close modal window until server says action is completed.
-					modaltext = 'Deleting course from '+selection ;
+					modaltext = 'Deleting section from '+selection ;
 					modalbkcolor = '#800000';
 					spinner = spinners[9];
 					$.ajax({type: "POST",
