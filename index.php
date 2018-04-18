@@ -97,6 +97,7 @@ $spreadsheet = $reader->load($_SESSION['fileSource']);
 				$columns = array();  //to check with format
 				foreach ($cellIterator as $cell) {
 					$columns[] =  $cell->getValue();
+					//This loop can be the starting point for the future development to improve the sheet validation and detect the header's name regardless of the order
 				}
  
 	$format = array("Subject","CourseNum","Section","Credits","Schedule_Type","Instructional_Method","CAP","SWS","Pmt","Linked_Crs","Cross-Listed","Part_of_Term","Notes to Registrar","Order","Days","Begin_Time","End_Time","Location","StartDate","EndDate","PrimaryInstructor","Inst_workload","Inst_%_Responsibility","Instructor_2","Inst_2_workload","Inst_2_%_Resp","Instructor_3","Inst_3_workload","Inst_3_%_Resp","CRN","TERM","TERM_DESC","COLL_CODE","DEPT","Long_title","Subtitle","Expr1036","START_DATE","END_DATE","Section_Text","Prerequisite","CAMPUS","ProvostMessage","RegistrarMessage",null,null,null,null,null,null,null,null,"FACULTY");
